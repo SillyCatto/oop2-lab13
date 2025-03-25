@@ -181,7 +181,7 @@ public class FlightReservation implements DisplayClass {
     /*overloaded toString() method for displaying all users in a flight....*/
 
     public String toString(int serialNum, Customer customer, int index) {
-        return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |       %-7s  |", "", (serialNum + 1), customer.randomIDDisplay(customer.getUserID()), customer.getName(),
+        return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |       %-7s  |", "", (serialNum + 1), customer.addSpaceAtModdleOfID(customer.getUserID()), customer.getName(),
                 customer.getAge(), customer.getEmail(), customer.getAddress(), customer.getPhone(), customer.numOfTicketsBookedByUser.get(index));
     }
 

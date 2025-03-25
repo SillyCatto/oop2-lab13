@@ -95,7 +95,7 @@ public class Customer {
      */
     private String toString(int i) {
         return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |", "", i,
-                randomIDDisplay(userID), name, age, email, address, phone);
+                addSpaceAtModdleOfID(userID), name, age, email, address, phone);
     }
 
     /**
@@ -236,7 +236,7 @@ public class Customer {
      * @param randomID id to add space
      * @return randomID with added space
      */
-    String randomIDDisplay(String randomID) {
+    String addSpaceAtModdleOfID(String randomID) {
         StringBuilder newString = new StringBuilder();
         for (int i = 0; i <= randomID.length(); i++) {
             if (i == 3) {
