@@ -25,6 +25,10 @@ public class User {
     // ************************************************************
     // Behaviours/Methods
     // ************************************************************
+    private static void setDefaultAdminCredentials() {
+        adminCredentials[0][0] = "root";
+        adminCredentials[0][1] = "root";
+    }
 
     public static void main(String[] args) {
         int countNumOfUsers = 1;
@@ -60,8 +64,7 @@ public class User {
             if (desiredOption == 1) {
 
                 /* Default username and password.... */
-                adminCredentials[0][0] = "root";
-                adminCredentials[0][1] = "root";
+                setDefaultAdminCredentials();
                 
                 System.out.print("\nEnter the UserName to login to the Management System :     ");
                 String username = read1.nextLine();
