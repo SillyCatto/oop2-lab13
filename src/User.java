@@ -30,6 +30,63 @@ public class User {
         adminCredentials[0][1] = "root";
     }
 
+
+
+    private static void displayAdminMenu(Scanner scanner, Customer customer, FlightReservation reservation, Flight flight, String username){
+        int option;
+        do{
+            System.out.printf("\n\nLogged in as \"%s\". Choose an option:\n", username);
+            System.out.println("1. Add new Passenger");
+            System.out.println("2. Search a Passenger");
+            System.out.println("3. Update Passenger Data");
+            System.out.println("4. Delete a Passenger");
+            System.out.println("5. Display all Passengers");
+            System.out.println("0. Logout");
+
+            option = scanner.nextInt();
+            scanner.nextLine();
+            handleAdminMenuChoice (option, scanner, customer, reservation, flight );
+        }while (option != 0);
+
+
+    }
+
+    private static void handleAdminMenuChoice (int option, Scanner scanner, Customer customer, FlightReservation reservation, Flight flight) {
+        switch (option){
+            case 1:
+                customer.addNewCustomer();
+                break;
+            case 2:
+                customer.displayCustomersData(false);
+                System.out.print("Enter Customer ID to Search: ");
+                customer.searchUser(scanner.nextLine());
+                break;
+
+            case 3:
+                customer.displayCustomersData(false);
+                System.out.print("Enter Customer ID to Update: ");
+                customer.editUserInfo(scanner.nextLine());
+                break;
+            case 4:
+                customer.displayCustomersData(false);
+                System.out.print("Enter Customer ID to Delete: ");
+                customer.deleteUser(scanner.nextLine());
+                break;
+            case 5:
+                customer.displayCustomersData(false);
+                break;
+            case 0:
+
+                System.out.println("Logging out...");
+                break;
+            default:
+                System.out.println("Invalid choice.");
+
+        }
+
+
+    }
+
     public static void main(String[] args) {
         int countNumOfUsers = 1;
         RolesAndPermissions r1 = new RolesAndPermissions();
