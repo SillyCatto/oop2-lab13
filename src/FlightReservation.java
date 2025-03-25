@@ -33,7 +33,7 @@ public class FlightReservation implements DisplayClass {
         for (Flight f1 : flight.getFlightList()) {
             boolean flightNoExists = flightNo.equalsIgnoreCase(f1.getFlightNumber());
             if (flightNoExists) {
-                for (Customer customer : Customer.customerCollection) {
+                for (Customer customer : Customer.getCustomersCollection()) {
                     boolean userIDExists = userID.equals(customer.getUserID());
                     if (userIDExists) {
                         isFound = true;
@@ -46,7 +46,7 @@ public class FlightReservation implements DisplayClass {
                         boolean isFlightRegisteredByCustomer = isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser, f1);
                         if (isFlightRegisteredByCustomer) {
                             addNumberOfTicketsToAlreadyBookedFlight(customer, numOfTickets);
-                            customer.addExistingFlightToCustomerList(flightIndex(flight.getFlightList(), flight), numOfTickets);
+                            customer.addExistingFlightToCustomerList(getFlightIndex(flight.getFlightList(), flight), numOfTickets);
 
                         } else {
                             customer.addNewFlightToCustomerList(f1);
@@ -75,7 +75,7 @@ public class FlightReservation implements DisplayClass {
         Scanner read = new Scanner(System.in);
         int index = 0, ticketsToBeReturned;
         boolean isFound = false;
-        for (Customer customer : Customer.customerCollection) {
+        for (Customer customer : Customer.getCustomersCollection()) {
             if (userID.equals(customer.getUserID())) {
                 if (customer.getFlightsRegisteredByUser().size() != 0) {
                     System.out.printf("%50s %s Here is the list of all the Flights registered by you %s", " ", "++++++++++++++", "++++++++++++++");
@@ -166,7 +166,7 @@ public class FlightReservation implements DisplayClass {
         System.out.print("+------+-------------------------------------------+-----------+------------------+-----------------------+------------------------+---------------------------+-------------+--------+-----------------+\n");
         System.out.printf("| Num  | FLIGHT SCHEDULE\t\t\t   | FLIGHT NO |  Booked Tickets  | \tFROM ====>>       | \t====>> TO\t   | \t    ARRIVAL TIME       | FLIGHT TIME |  GATE  |  FLIGHT STATUS  |%n");
         System.out.print("+------+-------------------------------------------+-----------+------------------+-----------------------+------------------------+---------------------------+-------------+--------+-----------------+\n");
-        for (Customer customer : Customer.customerCollection) {
+        for (Customer customer : Customer.getCustomersCollection()) {
             List<Flight> f = customer.getFlightsRegisteredByUser();
             int size = customer.getFlightsRegisteredByUser().size();
             if (userID.equals(customer.getUserID())) {
@@ -193,7 +193,7 @@ public class FlightReservation implements DisplayClass {
         System.out.printf("%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+----------------+\n", "");
         int size = flight.getListOfRegisteredCustomersInAFlight().size();
         for (int i = 0; i < size; i++) {
-            System.out.println(toString(i, c.get(i), flightIndex(c.get(i).flightsRegisteredByUser, flight)));
+            System.out.println(toString(i, c.get(i), getFlightIndex(c.get(i).flightsRegisteredByUser, flight)));
             System.out.printf("%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+----------------+\n", "");
         }
     }
@@ -210,7 +210,7 @@ public class FlightReservation implements DisplayClass {
         }
     }
 
-    int flightIndex(List<Flight> flightList, Flight flight) {
+    int getFlightIndex(List<Flight> flightList, Flight flight) {
         int i = -1;
         for (Flight flight1 : flightList) {
             if (flight1.equals(flight)) {
