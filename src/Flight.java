@@ -66,7 +66,7 @@ public class Flight{
         RandomGenerator r1 = new RandomGenerator();
         for (int i = 0; i < numOfFlights; i++) {
             String[][] chosenDestinations = r1.randomDestinations();
-            String[] distanceBetweenTheCities = calculateDistance(Double.parseDouble(chosenDestinations[0][1]), Double.parseDouble(chosenDestinations[0][2]), Double.parseDouble(chosenDestinations[1][1]), Double.parseDouble(chosenDestinations[1][2]));
+            String[] distanceBetweenTheCities = FlightDistance.calculateDistance(Double.parseDouble(chosenDestinations[0][1]), Double.parseDouble(chosenDestinations[0][2]), Double.parseDouble(chosenDestinations[1][1]), Double.parseDouble(chosenDestinations[1][2]));
             String flightSchedule = createNewFlightsAndTime();
             String flightNumber = r1.randomFlightNumbGen(2, 1).toUpperCase();
             int numOfSeatsInTheFlight = r1.randomNumOfSeats();
@@ -189,29 +189,7 @@ public class Flight{
         displayFlightSchedule();
     }
 
-    /**
-     * Calculates the distance between the cities/airports based on their lat longs.
-     *
-     * @param lat1 origin city/airport latitude
-     * @param lon1 origin city/airport longitude
-     * @param lat2 destination city/airport latitude
-     * @param lon2 destination city/airport longitude
-     * @return distance both in miles and km between the cities/airports
-     */
 
-    public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
-        double theta = lon1 - lon2;
-        double distance = Math.sin(MathUtils.degreeToRadian(lat1)) * Math.sin(MathUtils.degreeToRadian(lat2)) + Math.cos(MathUtils.degreeToRadian(lat1)) * Math.cos(MathUtils.degreeToRadian(lat2)) * Math.cos(MathUtils.degreeToRadian(theta));
-        distance = Math.acos(distance);
-        distance = MathUtils.radianToDegree(distance);
-        distance = distance * 60 * 1.1515;
-        /* On the Zero-Index, distance will be in Miles, on 1st-index, distance will be in KM and on the 2nd index distance will be in KNOTS*/
-        String[] distanceString = new String[3];
-        distanceString[0] = String.format("%.2f", distance * 0.8684);
-        distanceString[1] = String.format("%.2f", distance * 1.609344);
-        distanceString[2] = Double.toString(Math.round(distance * 100.0) / 100.0);
-        return distanceString;
-    }
 
 
 

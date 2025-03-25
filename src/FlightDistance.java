@@ -1,6 +1,6 @@
 public class FlightDistance{
 
-    public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+    public static String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
         double distance = Math.sin(MathUtils.degreeToRadian(lat1)) * Math.sin(MathUtils.degreeToRadian(lat2)) + Math.cos(MathUtils.degreeToRadian(lat1)) * Math.cos(MathUtils.degreeToRadian(lat2)) * Math.cos(MathUtils.degreeToRadian(theta));
         distance = Math.acos(distance);
