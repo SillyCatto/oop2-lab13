@@ -15,29 +15,40 @@ public class MenuViewer {
 
 
 
-    public static void displayAdminMenu (String username){
-        System.out.printf("\n========== Admin Menu (Logged in as \"%s\") ==========\n", username);
-        System.out.println("1. Add new Passenger");
-        System.out.println("2. Search a Passenger");
-        System.out.println("3. Update Passenger Data");
-        System.out.println("4. Delete a Passenger");
-        System.out.println("5. Display all Passengers");
-        System.out.println("0. Logout");
-        System.out.print("Enter option: ");
+    public static void displayAdminMenu (Scanner scanner, String username){
+        int option;
+        do{
+            System.out.printf("\n\nLogged in as \"%s\". Choose an option:\n", username);
+            System.out.println("1. Add new Passenger");
+            System.out.println("2. Search a Passenger");
+            System.out.println("3. Update Passenger Data");
+            System.out.println("4. Delete a Passenger");
+            System.out.println("5. Display all Passengers");
+            System.out.println("0. Logout");
+            option = scanner.nextInt();
+            scanner.nextLine();
+            MenuChoiceHandler.handleAdminMenuChoice(option, scanner);
+        }while (option != 0);
 
 
     }
 
-    public static void displayPassengerMenu( ){
-        System.out.println("\n========== Passenger Menu ==========");
-        System.out.println("1. Book a Flight");
-        System.out.println("2. Update Your Data");
-        System.out.println("3. Delete Your Account");
-        System.out.println("4. Display Flight Schedule");
-        System.out.println("5. Cancel a Flight");
-        System.out.println("6. Display Your Registered Flights");
-        System.out.println("0. Logout");
-        System.out.print("Enter option: ");}
+    public static void displayPassengerMenu( Scanner scanner,String userId ){
+        int option;
+
+        do {
+            System.out.println("\nPassenger Menu:");
+            System.out.println("1. Book a Flight");
+            System.out.println("2. Update Your Data");
+            System.out.println("3. Delete Your Account");
+            System.out.println("4. Display Flight Schedule");
+            System.out.println("5. Cancel a Flight");
+            System.out.println("6. Display Your Registered Flights");
+            System.out.println("0. Logout");
+            option = scanner.nextInt();
+            scanner.nextLine();
+            handlePassengerMenuSelection(option, scanner, userId);
+        }while (option != 0);}
 
     public static void displayUserManual ( Scanner scanner)  {
         System.out.println("\n========== User Manual ==========") ;
