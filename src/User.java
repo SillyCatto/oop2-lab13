@@ -18,6 +18,7 @@ public class User {
      * index. Max num of admins can be 10....
      */
     static String[][] adminUserNameAndPassword = new String[10][2];
+    private static List<Customer> customerCollection = Customer.getCustomersCollection();
 
     // ************************************************************
     // Behaviours/Methods
@@ -127,7 +128,7 @@ public class User {
                             c1.displayCustomersData(false);
                             System.out.print("Enter the CustomerID to Update its Data :\t");
                             String customerID = read1.nextLine();
-                            if (customersCollection.size() > 0) {
+                            if (customerCollection.size() > 0) {
                                 c1.editUserInfo(customerID);
                             } else {
                                 System.out.printf("%-50sNo Customer with the ID %s Found...!!!\n", " ", customerID);
@@ -141,7 +142,7 @@ public class User {
                             c1.displayCustomersData(false);
                             System.out.print("Enter the CustomerID to Delete its Data :\t");
                             String customerID = read1.nextLine();
-                            if (customersCollection.size() > 0) {
+                            if (customerCollection.size() > 0) {
                                 c1.deleteUser(customerID);
                             } else {
                                 System.out.printf("%-50sNo Customer with the ID %s Found...!!!\n", " ", customerID);

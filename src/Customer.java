@@ -329,6 +329,6 @@ public class Customer {
     }
 
     public static List<Customer> getCustomersCollection() {
-        return customerCollection;
+        return Collections.unmodifiableList(customerCollection);
     }
 }
