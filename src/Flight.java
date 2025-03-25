@@ -112,13 +112,6 @@ public class Flight{
         return isAdded;
     }
 
-    /**
-     * Calculates the flight time, using avg. ground speed of 450 knots.
-     *
-     * @param distanceBetweenTheCities distance between the cities/airports in miles
-     * @return formatted flight time
-     */
-
 
     /**
      * Creates flight arrival time by adding flight time to flight departure time
@@ -201,28 +194,10 @@ public class Flight{
         c.set(Calendar.MINUTE, ((c.get(Calendar.MINUTE) * 3) - (int) (Math.random() * 45)));
         Date myDateObj = c.getTime();
         LocalDateTime date = Instant.ofEpochMilli(myDateObj.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
-        date = getNearestHourQuarter(date);
+        date = MathUtils.getNearestHourQuarter(date);
         return date.format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy, HH:mm a "));
     }
 
-    /**
-     * Formats flight schedule, so that the minutes would be to the nearest quarter.
-     *
-     * @param datetime to be formatting
-     * @return formatted LocalDateTime with minutes close to the nearest hour quarter
-     */
-    public LocalDateTime getNearestHourQuarter(LocalDateTime datetime) {
-        int minutes = datetime.getMinute();
-        int mod = minutes % 15;
-        LocalDateTime newDatetime;
-        if (mod < 8) {
-            newDatetime = datetime.minusMinutes(mod);
-        } else {
-            newDatetime = datetime.plusMinutes(15 - mod);
-        }
-        newDatetime = newDatetime.truncatedTo(ChronoUnit.MINUTES);
-        return newDatetime;
-    }
 
 
     //        ************************************************************ Setters & Getters ************************************************************

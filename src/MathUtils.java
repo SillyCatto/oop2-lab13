@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 public class MathUtils {
     public static double degreeToRadian(double deg) {
         return (deg * Math.PI / 180.0);
@@ -34,5 +37,18 @@ public class MathUtils {
         } else {
             return String.format("%s:%s", hours, minutes);
         }
+    }
+
+    public static LocalDateTime getNearestHourQuarter(LocalDateTime datetime) {
+        int minutes = datetime.getMinute();
+        int mod = minutes % 15;
+        LocalDateTime newDatetime;
+        if (mod < 8) {
+            newDatetime = datetime.minusMinutes(mod);
+        } else {
+            newDatetime = datetime.plusMinutes(15 - mod);
+        }
+        newDatetime = newDatetime.truncatedTo(ChronoUnit.MINUTES);
+        return newDatetime;
     }
 }
