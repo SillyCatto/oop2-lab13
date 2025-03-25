@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Flight extends FlightDistance {
+public class Flight{
 
     //        ************************************************************ Fields ************************************************************
 
@@ -198,7 +198,7 @@ public class Flight extends FlightDistance {
      * @param lon2 destination city/airport longitude
      * @return distance both in miles and km between the cities/airports
      */
-    @Override
+
     public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
         double distance = Math.sin(MathUtils.degreeToRadian(lat1)) * Math.sin(MathUtils.degreeToRadian(lat2)) + Math.cos(MathUtils.degreeToRadian(lat1)) * Math.cos(MathUtils.degreeToRadian(lat2)) * Math.cos(MathUtils.degreeToRadian(theta));
@@ -231,7 +231,6 @@ public class Flight extends FlightDistance {
         }
     }
 
-    @Override
     public String toString(int i) {
         return String.format("| %-5d| %-41s | %-9s | \t%-9s | %-21s | %-22s | %-10s  |   %-6sHrs |  %-4s  |  %-8s / %-11s|", i, flightSchedule, flightNumber, numOfSeatsInTheFlight, fromWhichCity, toWhichCity, fetchArrivalTime(), flightTime, gate, distanceInMiles, distanceInKm);
     }
