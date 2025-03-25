@@ -4,7 +4,6 @@
  *
  */
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +16,10 @@ public class User {
      * 2D Array to store admin credentials. Default credentials are stored on [0][0]
      * index. Max num of admins can be 10....
      */
-    static String[][] adminUserNameAndPassword = new String[10][2];
+    static String[][] adminCredentials = new String[10][2];
+    String adminUserName = adminCredentials[0][0];
+    String adminPassword = adminCredentials[0][1];
+
     private static List<Customer> customerCollection = Customer.getCustomersCollection();
 
     // ************************************************************
@@ -58,8 +60,8 @@ public class User {
             if (desiredOption == 1) {
 
                 /* Default username and password.... */
-                adminUserNameAndPassword[0][0] = "root";
-                adminUserNameAndPassword[0][1] = "root";
+                adminCredentials[0][0] = "root";
+                adminCredentials[0][1] = "root";
                 
                 System.out.print("\nEnter the UserName to login to the Management System :     ");
                 String username = read1.nextLine();
@@ -210,8 +212,8 @@ public class User {
                 }
 
                 /* Setting the credentials entered by the user..... */
-                adminUserNameAndPassword[countNumOfUsers][0] = username;
-                adminUserNameAndPassword[countNumOfUsers][1] = password;
+                adminCredentials[countNumOfUsers][0] = username;
+                adminCredentials[countNumOfUsers][1] = password;
 
                 /* Incrementing the numOfUsers */
                 countNumOfUsers++;
