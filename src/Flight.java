@@ -201,9 +201,9 @@ public class Flight extends FlightDistance {
     @Override
     public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
-        double distance = Math.sin(degreeToRadian(lat1)) * Math.sin(degreeToRadian(lat2)) + Math.cos(degreeToRadian(lat1)) * Math.cos(degreeToRadian(lat2)) * Math.cos(degreeToRadian(theta));
+        double distance = Math.sin(MathUtils.degreeToRadian(lat1)) * Math.sin(MathUtils.degreeToRadian(lat2)) + Math.cos(MathUtils.degreeToRadian(lat1)) * Math.cos(MathUtils.degreeToRadian(lat2)) * Math.cos(MathUtils.degreeToRadian(theta));
         distance = Math.acos(distance);
-        distance = radianToDegree(distance);
+        distance = MathUtils.radianToDegree(distance);
         distance = distance * 60 * 1.1515;
         /* On the Zero-Index, distance will be in Miles, on 1st-index, distance will be in KM and on the 2nd index distance will be in KNOTS*/
         String[] distanceString = new String[3];
@@ -213,13 +213,7 @@ public class Flight extends FlightDistance {
         return distanceString;
     }
 
-    private double degreeToRadian(double deg) {
-        return (deg * Math.PI / 180.0);
-    }
 
-    private double radianToDegree(double rad) {
-        return (rad * 180.0 / Math.PI);
-    }
 
     public void displayFlightSchedule() {
 
