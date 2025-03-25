@@ -51,6 +51,25 @@ public class User {
 
     }
 
+    private static void handleAdminLogin (Scanner scanner, RolesAndPermissions rolesAndPermissions, Customer customer, FlightReservation reservation, Flight flight) {
+        System.out.print("\nEnter Username: ");
+        String username= scanner.nextLine();
+        System.out.print("Enter Password: ") ;
+        String password =scanner.nextLine();
+
+        int privilegeLevel = rolesAndPermissions.isPrivilegedUserOrNot(username, password);
+        if(privilegeLevel == -1){
+            System.out.println("Error! Unable to login. User not found");
+        }else if (privilegeLevel == 0) {
+            System.out.println("You have standard access. You can only view customer data");
+            customer.displayCustomersData(true);
+        } else {
+
+            displayAdminMenu(scanner, customer, reservation, flight, username);
+        }
+
+    }
+
     private static void handleAdminMenuChoice (int option, Scanner scanner, Customer customer, FlightReservation reservation, Flight flight) {
         switch (option){
             case 1:
