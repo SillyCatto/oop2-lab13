@@ -18,7 +18,6 @@ public class User {
      * index. Max num of admins can be 10....
      */
     static String[][] adminUserNameAndPassword = new String[10][2];
-    private static List<Customer> customersCollection = new ArrayList<>();
 
     // ************************************************************
     // Behaviours/Methods
@@ -380,7 +379,5 @@ public class User {
     // ************************************************************ Setters &
     // Getters ************************************************************
 
-    public static List<Customer> getCustomersCollection() {
-        return customersCollection;
-    }
+
 }
