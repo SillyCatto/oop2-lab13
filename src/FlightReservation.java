@@ -31,15 +31,20 @@ public class FlightReservation implements DisplayClass {
     void bookFlight(String flightNo, int numOfTickets, String userID) {
         boolean isFound = false;
         for (Flight f1 : flight.getFlightList()) {
-            if (flightNo.equalsIgnoreCase(f1.getFlightNumber())) {
+            boolean flightNoExists = flightNo.equalsIgnoreCase(f1.getFlightNumber());
+            if (flightNoExists) {
                 for (Customer customer : Customer.customerCollection) {
-                    if (userID.equals(customer.getUserID())) {
+                    boolean userIDExists = userID.equals(customer.getUserID());
+                    if (userIDExists) {
                         isFound = true;
                         f1.setNoOfSeatsInTheFlight(f1.getNoOfSeats() - numOfTickets);
-                        if (!f1.isCustomerAlreadyAdded(f1.getListOfRegisteredCustomersInAFlight(), customer)) {
+
+                        boolean isCustomerAddedToFlight = f1.isCustomerAlreadyAdded(f1.getListOfRegisteredCustomersInAFlight(), customer);
+                        if (!isCustomerAddedToFlight) {
                             f1.addNewCustomerToFlight(customer);
                         }
-                        if (isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser, f1)) {
+                        boolean isFlightRegisteredByCustomer = isFlightAlreadyAddedToCustomerList(customer.flightsRegisteredByUser, f1);
+                        if (isFlightRegisteredByCustomer) {
                             addNumberOfTicketsToAlreadyBookedFlight(customer, numOfTickets);
                             if (flightIndex(flight.getFlightList(), flight) != -1) {
                                 customer.addExistingFlightToCustomerList(flightIndex(flight.getFlightList(), flight), numOfTickets);
