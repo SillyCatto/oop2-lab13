@@ -40,9 +40,9 @@ public class LoginHandler {
     }
 
     public void handlePassengerLogin  (Scanner scanner) {
-        System.out.print("Enter Email: ");
+        System.out.print("\n\nEnter the Email to Login : \t");
         String email = scanner.nextLine();
-        System.out.print("Enter Password: ");
+        System.out.print("Enter the Password : \t");
         String password = scanner.nextLine();
         String[] result = rolesAndPermissions.isPassengerRegistered(email, password).split("-");
 
