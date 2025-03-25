@@ -20,16 +20,17 @@ public class LoginHandler {
 
     public void handleAdminLogin ()  {
 
-        System.out.print("\nEnter Username: ");
+        System.out.print("\nEnter the UserName to login to the Management System :     ");
         String username = sc.nextLine();
-        System.out.print("Enter Password: ");
+        System.out.print("Enter the Password to login to the Management System :    ");
         String password = sc.nextLine();
 
         int privilegeLevel = rolesAndPermissions.isPrivilegedUserOrNot(username, password);
         if (privilegeLevel == -1) {
-            System.out.println("ERROR! Unable to login. User not found.");
+            System.out.println("\n%20sERROR!!! Unable to login Cannot find user with the entered credentials.... Try Creating New Credentials or get yourself register by pressing 4....\n");
         } else if (privilegeLevel == 0) {
-            System.out.println("You have standard access. You can only view customer data.");
+            System.out.println("You've standard/default privileges to access the data... You can just view customers data..."
+                    + "Can't perform any actions on them....");
             customer.displayCustomersData(true);
         } else
         {
