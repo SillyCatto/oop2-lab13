@@ -17,10 +17,6 @@ public class User {
      * index. Max num of admins can be 10....
      */
     static String[][] adminCredentials = new String[10][2];
-    String adminUserName = adminCredentials[0][0];
-    String adminPassword = adminCredentials[0][1];
-
-    private static List<Customer> customerCollection = Customer.getCustomersCollection();
 
     // ************************************************************
     // Behaviours/Methods
