@@ -1,9 +1,20 @@
-public abstract class FlightDistance {
-    public abstract String toString(int i);
+public class FlightDistance{
 
-    public abstract String[] calculateDistance(double lat1, double lon1, double lat2, double lon2);
+    public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double distance = Math.sin(MathUtils.degreeToRadian(lat1)) * Math.sin(MathUtils.degreeToRadian(lat2)) + Math.cos(MathUtils.degreeToRadian(lat1)) * Math.cos(MathUtils.degreeToRadian(lat2)) * Math.cos(MathUtils.degreeToRadian(theta));
+        distance = Math.acos(distance);
+        distance = MathUtils.radianToDegree(distance);
+        distance = distance * 60 * 1.1515;
+        /* On the Zero-Index, distance will be in Miles, on 1st-index, distance will be in KM and on the 2nd index distance will be in KNOTS*/
+        String[] distanceString = new String[3];
+        distanceString[0] = String.format("%.2f", distance * 0.8684);
+        distanceString[1] = String.format("%.2f", distance * 1.609344);
+        distanceString[2] = Double.toString(Math.round(distance * 100.0) / 100.0);
+        return distanceString;
+    }
 
-    public void displayMeasurementInstructions(){
+    public static void displayMeasurementInstructions(){
         String symbols = "+---------------------------+";
         System.out.printf("\n\n %100s\n %100s", symbols, "| SOME IMPORTANT GUIDELINES |");
         System.out.printf("\n %100s\n", symbols);

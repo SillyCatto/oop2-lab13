@@ -270,7 +270,7 @@ public class User {
                         } else if (desiredChoice == 4) {
 
                             f1.displayFlightSchedule();
-                            f1.displayMeasurementInstructions();
+                            FlightDistance.displayMeasurementInstructions();
                         } else if (desiredChoice == 5) {
 
                             bookingAndReserving.cancelFlight(result[1]);
