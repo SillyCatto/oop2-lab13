@@ -47,7 +47,7 @@ public class MenuViewer {
             System.out.println("0. Logout");
             option = scanner.nextInt();
             scanner.nextLine();
-            handlePassengerMenuSelection(option, scanner, userId);
+            MenuChoiceHandler.handlePassengerMenuChoice(option, scanner, userId);
         }while (option != 0);}
 
     public static void displayUserManual ( Scanner scanner)  {
