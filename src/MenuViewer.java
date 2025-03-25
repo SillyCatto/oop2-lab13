@@ -15,7 +15,9 @@ public class MenuViewer {
 
 
 
-    public static void displayAdminMenu (Scanner scanner, String username){
+    public static void displayAdminMenu (String username){
+        Scanner sc = new Scanner(System.in);
+
         int option;
         do{
             System.out.printf("\n\nLogged in as \"%s\". Choose an option:\n", username);
@@ -25,15 +27,17 @@ public class MenuViewer {
             System.out.println("4. Delete a Passenger");
             System.out.println("5. Display all Passengers");
             System.out.println("0. Logout");
-            option = scanner.nextInt();
-            scanner.nextLine();
-            MenuChoiceHandler.handleAdminMenuChoice(option, scanner);
+            option = sc.nextInt();
+            sc.nextLine();
+            MenuChoiceHandler.handleAdminMenuChoice(option );
         }while (option != 0);
 
 
     }
 
-    public static void displayPassengerMenu( Scanner scanner,String userId ){
+    public static void displayPassengerMenu( String userId ){
+        Scanner sc = new Scanner(System.in);
+
         int option;
 
         do {
@@ -45,17 +49,19 @@ public class MenuViewer {
             System.out.println("5. Cancel a Flight");
             System.out.println("6. Display Your Registered Flights");
             System.out.println("0. Logout");
-            option = scanner.nextInt();
-            scanner.nextLine();
-            MenuChoiceHandler.handlePassengerMenuChoice(option, scanner, userId);
+            option = sc.nextInt();
+            sc.nextLine();
+            MenuChoiceHandler.handlePassengerMenuChoice(option,userId);
         }while (option != 0);}
 
-    public static void displayUserManual ( Scanner scanner)  {
+    public static void displayUserManual (  )  {
+        Scanner sc = new Scanner(System.in);
         System.out.println("\n========== User Manual ==========") ;
         System.out.println("(1) Admin can manage passengers.");
         System.out.println("(2) Passengers can book flights.");
         System.out.println("Press any key to return to menu.");
-        scanner.nextLine();
+
+        sc.nextLine();
 
     }
 }

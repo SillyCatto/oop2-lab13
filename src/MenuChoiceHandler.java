@@ -5,7 +5,9 @@ public class MenuChoiceHandler {
     private static FlightReservation reservation = new FlightReservation();
     private static Flight flight = new Flight();
 
-    public static void handleAdminMenuChoice (int option,Scanner scanner )  {
+    public static void handleAdminMenuChoice (int option )  {
+        Scanner sc = new Scanner(System.in);
+
         switch (option){
             case 1:
                 customer.addNewCustomer();
@@ -13,18 +15,18 @@ public class MenuChoiceHandler {
             case 2:
                 customer.displayCustomersData(false);
                 System.out.print("Enter Customer ID to Search: ");
-                customer.searchUser(scanner.nextLine());
+                customer.searchUser(sc.nextLine());
                 break;
 
             case 3:
                 customer.displayCustomersData(false);
                 System.out.print("Enter Customer ID to Update: ");
-                customer.editUserInfo(scanner.nextLine());
+                customer.editUserInfo(sc.nextLine());
                 break;
             case 4:
                 customer.displayCustomersData(false);
                 System.out.print("Enter Customer ID to Delete: ");
-                customer.deleteUser(scanner.nextLine());
+                customer.deleteUser(sc.nextLine());
                 break;
             case 5:
                 customer.displayCustomersData(false);
@@ -42,15 +44,17 @@ public class MenuChoiceHandler {
     }
 
 
-    public static void handlePassengerMenuChoice (int option, Scanner scanner,String userId) {
+    public static void handlePassengerMenuChoice (int option,  String userId) {
+        Scanner sc = new Scanner(System.in);
+
         switch( option) {
             case 1:
                 flight.displayFlightSchedule();
                 System.out.print("\nEnter Flight Number to Book: ");
-                String flightToBook = scanner.nextLine();
+                String flightToBook = sc.nextLine();
                 System.out.print("Enter Number of Tickets: ");
-                int numOfTickets = scanner.nextInt();
-                scanner.nextLine();
+                int numOfTickets = sc.nextInt();
+                sc.nextLine();
                 reservation.bookFlight(flightToBook, numOfTickets, userId);
                 break;
             case 2:
@@ -58,7 +62,7 @@ public class MenuChoiceHandler {
                 break;
             case 3:
                 System.out.print("Confirm account deletion (Y/N): ");
-                char confirmation = scanner.nextLine().charAt(0);
+                char confirmation = sc.nextLine().charAt(0);
                 if (confirmation == 'Y' || confirmation == 'y') {
                     customer.deleteUser(userId);
                     System.out.println("Account deleted successfully.");

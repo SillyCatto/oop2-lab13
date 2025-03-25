@@ -6,6 +6,7 @@ public class LoginHandler {
     private Flight flight;
     private Customer customer;
     private String[][] adminCredentials;
+    private Scanner sc = new Scanner(System.in) ;
 
     public LoginHandler(RolesAndPermissions rolesAndPermissions,FlightReservation reservation, Flight flight, Customer customer, String[][] adminCredentials) {
 
@@ -17,12 +18,12 @@ public class LoginHandler {
     }
 
 
-    public void handleAdminLogin(Scanner scanner){
+    public void handleAdminLogin ()  {
 
         System.out.print("\nEnter Username: ");
-        String username = scanner.nextLine();
+        String username = sc.nextLine();
         System.out.print("Enter Password: ");
-        String password = scanner.nextLine();
+        String password = sc.nextLine();
 
         int privilegeLevel = rolesAndPermissions.isPrivilegedUserOrNot(username, password);
         if (privilegeLevel == -1) {
@@ -32,7 +33,7 @@ public class LoginHandler {
             customer.displayCustomersData(true);
         } else
         {
-            MenuViewer.displayAdminMenu(scanner, username);
+            MenuViewer.displayAdminMenu(username);
         }
 
     }
@@ -45,7 +46,7 @@ public class LoginHandler {
         String[] result = rolesAndPermissions.isPassengerRegistered(email, password).split("-");
 
         if (Integer.parseInt(result[0]) == 1){
-            MenuViewer.displayPassengerMenu(scanner,result[1] );
+            MenuViewer.displayPassengerMenu(result[1] );
         }else {
             System.out.println("ERROR! Unable to login. User not found.");
         }
